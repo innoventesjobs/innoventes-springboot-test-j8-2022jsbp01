@@ -1,0 +1,70 @@
+# ===============================
+# = Server configurations
+# ===============================
+server:
+  port: 8100
+
+# ===============================
+# = Spring configurations
+# ===============================
+spring:
+  application:
+    name: innoventes-springboot-test
+
+  # ===============================
+  # = JPA configurations
+  # ===============================
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      # =================================================
+      # = (create, create-drop, validate, update, none)
+      # =================================================
+      ddl-auto: update
+
+  # ===============================
+  # = Jackson configurations
+  # =============================== 
+  jackson:
+    # ==================================
+    # = Fail on unknown JSON properties
+    # ==================================
+    deserialization:
+      fail-on-unknown-properties: true
+
+    # ==================================
+    # = Date format settings and timezone
+    # ==================================
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Kolkata
+
+  # ===============================
+  # = Datasource configurations
+  # ===============================
+  datasource:
+    url: jdbc:h2:mem:company
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+# ===============================
+# = Logging configurations
+# ===============================
+logging:
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n"
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    root: WARN
+    "[com.rightfleet.app]": DEBUG
+    "[org.springframework.web]": INFO
+    "[org.springframework.security]": INFO
+    "[org.springframework.web.socket]": DEBUG
+    org:
+      "[hibernate.SQL]": INFO
+      "[hibernate.type.descriptor.sql.BasicBinder]": INFO
