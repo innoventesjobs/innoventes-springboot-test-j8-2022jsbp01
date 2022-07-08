@@ -26,7 +26,7 @@ spring:
 
   # ===============================
   # = Jackson configurations
-  # =============================== 
+  # ===============================
   jackson:
     # ==================================
     # = Fail on unknown JSON properties
@@ -61,7 +61,7 @@ logging:
     file: "%d %-5level [%thread] %logger{0} : %msg%n"
   level:
     root: WARN
-    "[com.rightfleet.app]": DEBUG
+    "[com.innoventes.test]": DEBUG
     "[org.springframework.web]": INFO
     "[org.springframework.security]": INFO
     "[org.springframework.web.socket]": DEBUG
