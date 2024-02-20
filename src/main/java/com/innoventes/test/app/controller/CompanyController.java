@@ -83,6 +83,21 @@ public class CompanyController {
 		return ResponseEntity.noContent().build();
 	}
 
+	@GetMapping(value = "/companies/{id}")
+	public ResponseEntity<CompanyDTO> getCompanyById(@PathVariable(value = "id") Long id) {
+		Company company = companyService.getCompanyById(id);
+		CompanyDTO companyDTO = companyMapper.getCompanyDTO(company);
+		return ResponseEntity.status(HttpStatus.OK).body(companyDTO);
+	}
+
+	@GetMapping(value = "/companies/{companyCode}")
+	public ResponseEntity<CompanyDTO> getCompanyByCompanyCode(@PathVariable(value = "companyCode") String companyCode) {
+		Company company = companyService.getCompanyByCompanyCode(companyCode);
+		CompanyDTO companyDTO = companyMapper.getCompanyDTO(company);
+		return ResponseEntity.status(HttpStatus.OK).body(companyDTO);
+	}
+
+
 	public String getMessage(String exceptionCode) {
 		return messageSource.getMessage(exceptionCode, null, LocaleContextHolder.getLocale());
 	}

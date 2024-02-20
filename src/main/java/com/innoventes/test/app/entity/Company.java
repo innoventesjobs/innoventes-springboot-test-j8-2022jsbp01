@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
@@ -41,4 +42,8 @@ public class Company extends BaseEntity {
 	
 	@Column(name = "website_url")
 	private String webSiteURL;
+
+	@Column(name = "company_code")
+	@UniqueElements
+	private String companyCode;
 }
