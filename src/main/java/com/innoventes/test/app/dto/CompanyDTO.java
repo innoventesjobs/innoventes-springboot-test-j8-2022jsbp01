@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -18,6 +19,8 @@ public class CompanyDTO {
 	private String email;
 
 	private Integer strength;
-	
+
 	private String webSiteURL;
+
+	private  String companyCode;
 }

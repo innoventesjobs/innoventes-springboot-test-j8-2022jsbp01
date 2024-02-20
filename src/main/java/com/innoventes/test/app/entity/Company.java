@@ -9,12 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Setter
@@ -31,8 +28,10 @@ public class Company extends BaseEntity {
 	private Long id;
 
 	@Column(name = "company_name")
+	@NonNull
 	private String companyName;
 
+	@NonNull
 	@Column(name = "email")
 	private String email;
 	
@@ -41,4 +40,8 @@ public class Company extends BaseEntity {
 	
 	@Column(name = "website_url")
 	private String webSiteURL;
+
+	@Column(name ="company_code")
+	@UniqueElements
+	private  String companyCode;
 }
