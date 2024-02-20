@@ -6,5 +6,5 @@ import com.innoventes.test.app.entity.Company;
 
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {
-	
+    public Company  findCompanyByCompanyCode(String companyCode);
 }
