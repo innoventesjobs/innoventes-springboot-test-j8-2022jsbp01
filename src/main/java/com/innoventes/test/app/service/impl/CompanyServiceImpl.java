@@ -32,6 +32,9 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public Company addCompany(Company company) throws ValidationException {
+		if(company.getCompanyName().equals(null) || company.getCompanyName.length()<=5){
+			throw ValidationException;
+		}
 		return companyRepository.save(company);
 	}
 
@@ -52,5 +55,24 @@ public class CompanyServiceImpl implements CompanyService {
 						String.format(serviceHelper.getLocalizedMessage(ApplicationErrorCodes.COMPANY_NOT_FOUND), id),
 						ApplicationErrorCodes.COMPANY_NOT_FOUND));
 		companyRepository.deleteById(existingCompanyRecord.getId());
+	}
+
+
+	public Company getCompanyById(Long id) throws RuntimeException{
+		Optional<Company> optCompany= companyRepository.findById(id);
+		if(optCompany.get().equals(null)){
+			Throw new RuntimeException("Company Id not found");
+		}
+
+		return optCompany.get();
+	}
+
+	public Company getCompanyBycode(String code) throws RuntimeException{
+		Optional<Company> optCompany= companyRepository.findBycode(code);
+		if(optCompany.get().equals(null)){
+			Throw new RuntimeException("Company code not found");
+		}
+
+		return optCompany.get();
 	}
 }

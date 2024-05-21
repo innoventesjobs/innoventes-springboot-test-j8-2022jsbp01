@@ -43,9 +43,9 @@ public class CompanyController {
 	@GetMapping("/companies")
 	public ResponseEntity<List<CompanyDTO>> getAllCompanies() {
 		List<Company> companyList = companyService.getAllCompanies();
-		
+
 		List<CompanyDTO> companyDTOList = new ArrayList<CompanyDTO>();
-		
+
 		for (Company entity : companyList) {
 			companyDTOList.add(companyMapper.getCompanyDTO(entity));
 		}
@@ -68,7 +68,7 @@ public class CompanyController {
 
 	@PutMapping(value = "/companies/{id}")
 	public ResponseEntity<CompanyDTO> updateCompany(@PathVariable(value = "id") Long id,
-			@Valid @RequestBody CompanyDTO companyDTO) throws ValidationException {
+													@Valid @RequestBody CompanyDTO companyDTO) throws ValidationException {
 		Company company = companyMapper.getCompany(companyDTO);
 		Company updatedCompany = companyService.updateCompany(id, company);
 		CompanyDTO updatedCompanyDTO = companyMapper.getCompanyDTO(updatedCompany);
@@ -87,4 +87,33 @@ public class CompanyController {
 		return messageSource.getMessage(exceptionCode, null, LocaleContextHolder.getLocale());
 	}
 
+
+	@GetMapping("/{id}")
+	public ResponseEntity<CompanyDTO> getCompayById(@PathVarible(value = id) Long id) throws RuntimeException {
+		Company c = companyService.getCompanyById(id);
+		//ResponseEntity<CompanyDTO>
+		CompanyDTO cDTO = new companyDTO();
+		cDTO.setID(c.getID());
+		//similarly all atributes will be set
+		ResponseEntity.status(HttpStatus.OK).body(cDTO);
+	}
+
+	@GetMapping("/{code}")
+	public ResponseEntity<CompanyDTO> getCompayBycode(@PathVarible(value = code) String code) throws RuntimeException {
+		Company c = companyService.getCompanyBycode(code);
+		//ResponseEntity<CompanyDTO>
+		CompanyDTO cDTO = new companyDTO();
+		cDTO.setID(c.getID());
+		//similarly all atributes will be set
+		ResponseEntity.status(HttpStatus.OK).body(cDTO);
+	}
+
+
+
+
+
 }
+
+
+
+

@@ -41,4 +41,7 @@ public class Company extends BaseEntity {
 	
 	@Column(name = "website_url")
 	private String webSiteURL;
+
+	@Column(name = "company_code")
+	private String code;
 }

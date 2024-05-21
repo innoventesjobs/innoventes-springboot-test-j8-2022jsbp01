@@ -9,6 +9,10 @@ public interface CompanyService {
 
 	List<Company> getAllCompanies();
 
+	Company getCompanyById(Long id) throws RuntimeException;
+
+	public Company getCompanyBycode(String code) throws RuntimeException;
+
 	Company addCompany(Company company) throws ValidationException;
 
 	Company updateCompany(Long id, Company company) throws ValidationException;
