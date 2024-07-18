@@ -31,12 +31,18 @@ public class Company extends BaseEntity {
 	private Long id;
 
 	@Column(name = "company_name")
+	@NotNull (message = "company name is mandatory")
+	@NotEmpty(message = "Company name cannot be empty")
+	@Size(min = 5, message = "Company name should be least 5 characters long")
 	private String companyName;
 
 	@Column(name = "email")
+	@NotNull(message = "Email is mandatory")
+	@Email(message = "Email should be valid")
 	private String email;
 	
 	@Column(name = "strength")
+	@PositiveOrZero(message = "Strength should be a positive number or zero")
 	private Integer strength;
 	
 	@Column(name = "website_url")
