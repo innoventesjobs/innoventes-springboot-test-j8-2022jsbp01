@@ -22,6 +22,7 @@ public class CompanyMapperImpl implements CompanyMapper {
 		dto.setEmail(entity.getEmail());
 		dto.setStrength(entity.getStrength());
 		dto.setWebSiteURL(entity.getWebSiteURL());
+		dto.setCompanyCode(entity.getCompanyCode());
 		
 		return dto;
 	}
@@ -57,6 +58,7 @@ public class CompanyMapperImpl implements CompanyMapper {
 		entity.setEmail(dto.getEmail());
 		entity.setStrength(dto.getStrength());
 		entity.setWebSiteURL(dto.getWebSiteURL());
+		entity.setCompanyCode(dto.getCompanyCode());
 		
 		return entity;
 	}

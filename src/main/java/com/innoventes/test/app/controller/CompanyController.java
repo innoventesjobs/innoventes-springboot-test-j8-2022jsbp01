@@ -3,6 +3,7 @@ package com.innoventes.test.app.controller;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -82,6 +83,26 @@ public class CompanyController {
 		companyService.deleteCompany(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	//task3
+	@GetMapping("/companies/{id}")
+	public ResponseEntity<CompanyDTO> getCompanyById(@PathVariable(value = "id") Long id) {
+		Optional<Company> companyOpt = companyService.getCompanyById(id);
+		if (companyOpt.isPresent()) {
+			CompanyDTO companyDTO = companyMapper.getCompanyDTO(companyOpt.get());
+			return ResponseEntity.status(HttpStatus.OK).body(companyDTO);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
+	}
+	
+	//task4
+	 @GetMapping("/companies/code/{companyCode}")
+	    public ResponseEntity<CompanyDTO> getCompanyByCompanyCode(@PathVariable(value = "companyCode") String companyCode) {
+	        Optional<Company> company = companyService.getCompanyByCompanyCode(companyCode);
+	        return company.map(value -> ResponseEntity.ok(companyMapper.getCompanyDTO(value)))
+	                      .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	    }
 
 	public String getMessage(String exceptionCode) {
 		return messageSource.getMessage(exceptionCode, null, LocaleContextHolder.getLocale());
